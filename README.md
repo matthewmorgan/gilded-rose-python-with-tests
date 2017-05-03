@@ -21,7 +21,7 @@ This kata's test tools include
 3. `coverage` to show you how much of your code is being tested.
 
 ```bash
-./test.sh        // runs nosetests --rednose --with-watch --with-coverage for you
+./test.sh        // runs nosetests --cover-branches --with-coverage --rednose --with-watch --cover-erase --cover-html
 ```
 
 The final test, which relates to a new feature, is skipped.  Remove the `@skip` annotation in `gilded-rose-test.py` to enable it.
