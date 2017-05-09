@@ -2,7 +2,13 @@ CONCERT = "Backstage passes to a TAFKAL80ETC concert"
 SULFURAS = "Sulfuras, Hand of Ragnaros"
 BRIE = "Aged Brie"
 
+
+def decrement_quality(items, i):
+    items[i].quality -= 1
+
 class GildedRose:
+
+        
     @staticmethod
     def update_quality(items):
         for i in range(0, len(items)):
@@ -10,7 +16,7 @@ class GildedRose:
                 # TODO: Improve this code.  Word.
                 if items[i].quality > 0:
                     if SULFURAS != items[i].name:
-                        items[i].quality = items[i].quality - 1
+                        decrement_quality(items, i)
             else:
                 if items[i].quality < 50:
                     items[i].quality = items[i].quality + 1
@@ -37,7 +43,7 @@ class GildedRose:
                     if CONCERT != items[i].name:
                         if items[i].quality > 0:
                             if SULFURAS != items[i].name:
-                                items[i].quality = items[i].quality - 1
+                                decrement_quality(items, i)
                     else:
                         # TODO: Fix this.
                         items[i].quality = items[i].quality - items[i].quality
