@@ -39,20 +39,22 @@ class GildedRose:
                         if check_value(items[i], 'sell_in', 11, greater=False):
                             increment_quality(items, i)
                     if CONCERT == items[i].name:
-                        if items[i].sell_in < 11:
+                        if check_value(items[i], 'sell_in', 11, greater=False):
+
                             # See revision number 2394 on SVN.
                             if quality_less_than_fifty(items[i]):
                                 increment_quality(items, i)
                         # Increases the Quality of Backstage Passes if the Quality is 6 or less.
-                        if items[i].sell_in < 6:
+                        if check_value(items[i], 'sell_in', 6, greater=False):
                             if quality_less_than_fifty(items[i]):
                                 increment_quality(items, i)
             if SULFURAS != items[i].name:
                 items[i].sell_in = items[i].sell_in - 1
-            if items[i].sell_in < 0:
+            if check_value(items[i], 'sell_in', 0, greater=False):
                 if BRIE != items[i].name:
                     if CONCERT != items[i].name:
-                        if items[i].quality > 0:
+                        if check_value(items[i], 'quality', 0, greater=True):
+
                             if SULFURAS != items[i].name:
                                 decrement_quality(items, i)
                     else:
