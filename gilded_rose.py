@@ -17,20 +17,12 @@ class GildedRose:
         else:
             if item.quality < 50:
                 increment_quality(item)
-                if "Aged Brie" == item.name:
+                if improves_with_age(item):
                     if item.sell_in < 6:
                         increment_quality(item)
                     if item.sell_in < 11:
                         increment_quality(item)
-                if "Backstage passes to a TAFKAL80ETC concert" == item.name:
-                    if item.sell_in < 11:
-                        # See revision number 2394 on SVN.
-                        if item.quality < 50:
-                            increment_quality(item)
-                    # Increases the Quality of Backstage Passes if the Quality is 6 or less.
-                    if item.sell_in < 6:
-                        if item.quality < 50:
-                            increment_quality(item)
+
         item.sell_in = item.sell_in - 1
         if item.sell_in < 0:
             if "Aged Brie" != item.name:
