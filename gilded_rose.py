@@ -41,8 +41,7 @@ class GildedRose:
                         if "Sulfuras, Hand of Ragnaros" != item.name:
                             item.quality = item.quality - 1
                 else:
-                    # TODO: Fix this.
-                    item.quality = item.quality - item.quality
+                    item.quality = 0
             else:
                 if item.quality < 50:
                     increment_quality(item)
