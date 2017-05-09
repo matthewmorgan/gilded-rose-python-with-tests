@@ -5,6 +5,9 @@ BRIE = "Aged Brie"
 
 def decrement_quality(items, i):
     items[i].quality -= 1
+    
+def increment_quality(items, i):
+    items[i].quality += 1
 
 class GildedRose:
 
@@ -19,23 +22,23 @@ class GildedRose:
                         decrement_quality(items, i)
             else:
                 if items[i].quality < 50:
-                    items[i].quality = items[i].quality + 1
+                    increment_quality(items, i)
                     if BRIE == items[i].name:
                         if items[i].sell_in < 6:
-                            items[i].quality = items[i].quality + 1
+                            increment_quality(items, i)
                     # Increases the Quality of the stinky cheese if it's 11 days to due date.
                     if BRIE == items[i].name:
                         if items[i].sell_in < 11:
-                            items[i].quality = items[i].quality + 1
+                            increment_quality(items, i)
                     if CONCERT == items[i].name:
                         if items[i].sell_in < 11:
                             # See revision number 2394 on SVN.
                             if items[i].quality < 50:
-                                items[i].quality = items[i].quality + 1
+                                increment_quality(items, i)
                         # Increases the Quality of Backstage Passes if the Quality is 6 or less.
                         if items[i].sell_in < 6:
                             if items[i].quality < 50:
-                                items[i].quality = items[i].quality + 1
+                                increment_quality(items, i)
             if SULFURAS != items[i].name:
                 items[i].sell_in = items[i].sell_in - 1
             if items[i].sell_in < 0:
@@ -49,7 +52,7 @@ class GildedRose:
                         items[i].quality = items[i].quality - items[i].quality
                 else:
                     if items[i].quality < 50:
-                        items[i].quality = items[i].quality + 1
+                        increment_quality(items, i)
                     if BRIE == items[i].name and items[i].sell_in <= 0:
                         items[i].quality = 0
                         # of for.
