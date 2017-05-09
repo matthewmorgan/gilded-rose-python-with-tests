@@ -12,24 +12,31 @@ def increment_quality(items, i):
 def quality_less_than_fifty(item):
     return item.quality < 50
 
+def check_value(item, value_name, value, greater=True):
+    if greater:
+        return getattr(item, value_name) > value
+    else:
+        return getattr(item, value_name) < value
+
 class GildedRose:
     @staticmethod
     def update_quality(items):
         for i in range(0, len(items)):
             if BRIE != items[i].name and CONCERT != items[i].name:
                 # TODO: Improve this code.  Word.
-                if items[i].quality > 0:
+                if check_value(items[i], 'quality', 0, greater=True):
                     if SULFURAS != items[i].name:
                         decrement_quality(items, i)
             else:
                 if quality_less_than_fifty(items[i]):
                     increment_quality(items, i)
                     if BRIE == items[i].name:
-                        if items[i].sell_in < 6:
+                        if check_value(items[i], 'sell_in', 6, greater=False):
                             increment_quality(items, i)
                     # Increases the Quality of the stinky cheese if it's 11 days to due date.
                     if BRIE == items[i].name:
-                        if items[i].sell_in < 11:
+#                        if items[i].sell_in < 11:
+                        if check_value(items[i], 'sell_in', 11, greater=False):
                             increment_quality(items, i)
                     if CONCERT == items[i].name:
                         if items[i].sell_in < 11:
