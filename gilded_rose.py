@@ -38,7 +38,7 @@ class GildedRose:
             if "Aged Brie" != item.name:
                 if "Backstage passes to a TAFKAL80ETC concert" != item.name:
                     if item.quality > 0:
-                        item.quality = item.quality - 1
+                        item.quality -= 1
                 else:
                     item.quality = 0
             else:
