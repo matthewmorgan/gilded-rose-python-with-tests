@@ -18,6 +18,18 @@ def check_value(item, value_name, value, greater=True):
     else:
         return getattr(item, value_name) < value
 
+def deal_with_concert(items, i):
+    if check_value(items[i], 'sell_in', 11, greater=False):
+
+        # See revision number 2394 on SVN.
+        if quality_less_than_fifty(items[i]):
+            increment_quality(items, i)
+            # Increases the Quality of Backstage Passes if the Quality is 6 or less.
+    if check_value(items[i], 'sell_in', 6, greater=False):
+        if quality_less_than_fifty(items[i]):
+            increment_quality(items, i)
+
+
 class GildedRose:
     @staticmethod
     def update_quality(items):
@@ -39,15 +51,8 @@ class GildedRose:
                         if check_value(items[i], 'sell_in', 11, greater=False):
                             increment_quality(items, i)
                     if CONCERT == items[i].name:
-                        if check_value(items[i], 'sell_in', 11, greater=False):
+                        deal_with_concert(items, i)
 
-                            # See revision number 2394 on SVN.
-                            if quality_less_than_fifty(items[i]):
-                                increment_quality(items, i)
-                        # Increases the Quality of Backstage Passes if the Quality is 6 or less.
-                        if check_value(items[i], 'sell_in', 6, greater=False):
-                            if quality_less_than_fifty(items[i]):
-                                increment_quality(items, i)
             if SULFURAS != items[i].name:
                 items[i].sell_in = items[i].sell_in - 1
             if check_value(items[i], 'sell_in', 0, greater=False):
