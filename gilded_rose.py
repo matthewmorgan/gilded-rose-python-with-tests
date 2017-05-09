@@ -20,8 +20,6 @@ class GildedRose:
                 if "Aged Brie" == item.name:
                     if item.sell_in < 6:
                         increment_quality(item)
-                # Increases the Quality of the stinky cheese if it's 11 days to due date.
-                if "Aged Brie" == item.name:
                     if item.sell_in < 11:
                         increment_quality(item)
                 if "Backstage passes to a TAFKAL80ETC concert" == item.name:
