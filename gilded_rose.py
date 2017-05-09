@@ -5,9 +5,7 @@ class GildedRose:
         for item in items:
             if "Sulfuras, Hand of Ragnaros" != item.name:
                 GildedRose.process_not_sulfuras(item)
-            if "Sulfuras, Hand of Ragnaros" != item.name:
-                if item.quality > 50:
-                    item.quality = 50
+
         return items
 
     @staticmethod
@@ -53,6 +51,8 @@ class GildedRose:
                 if "Aged Brie" == item.name and item.sell_in <= 0:
                     item.quality = 0
                     # of for.
+        if item.quality > 50:
+            item.quality = 50
 
 
 def increment_quality(item):
