@@ -29,6 +29,23 @@ def deal_with_concert(items, i):
         if quality_less_than_fifty(items[i]):
             increment_quality(items, i)
 
+def deal_with_negative_sell_in(items, i):
+    if BRIE != items[i].name:
+        if CONCERT != items[i].name:
+            if check_value(items[i], 'quality', 0, greater=True):
+
+                if SULFURAS != items[i].name:
+                    decrement_quality(items, i)
+        else:
+            # TODO: Fix this.
+            items[i].quality = items[i].quality - items[i].quality
+    else:
+        if quality_less_than_fifty(items[i]):
+            increment_quality(items, i)
+        if BRIE == items[i].name and items[i].sell_in <= 0:
+            items[i].quality = 0
+            # of for.
+
 
 class GildedRose:
     @staticmethod
@@ -56,21 +73,8 @@ class GildedRose:
             if SULFURAS != items[i].name:
                 items[i].sell_in = items[i].sell_in - 1
             if check_value(items[i], 'sell_in', 0, greater=False):
-                if BRIE != items[i].name:
-                    if CONCERT != items[i].name:
-                        if check_value(items[i], 'quality', 0, greater=True):
+                deal_with_negative_sell_in(items, i)
 
-                            if SULFURAS != items[i].name:
-                                decrement_quality(items, i)
-                    else:
-                        # TODO: Fix this.
-                        items[i].quality = items[i].quality - items[i].quality
-                else:
-                    if quality_less_than_fifty(items[i]):
-                        increment_quality(items, i)
-                    if BRIE == items[i].name and items[i].sell_in <= 0:
-                        items[i].quality = 0
-                        # of for.
             if SULFURAS != items[i].name:
                 if items[i].quality > 50:
                     items[i].quality = 50
