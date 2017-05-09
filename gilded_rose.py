@@ -10,7 +10,7 @@ class GildedRose:
 
     @staticmethod
     def process_not_sulfuras(item):
-        if "Aged Brie" != item.name and "Backstage passes to a TAFKAL80ETC concert" != item.name:
+        if not improves_with_age(item):
             # TODO: Improve this code.  Word.
             if item.quality > 0:
                item.quality = item.quality - 1
@@ -38,8 +38,7 @@ class GildedRose:
             if "Aged Brie" != item.name:
                 if "Backstage passes to a TAFKAL80ETC concert" != item.name:
                     if item.quality > 0:
-                        if "Sulfuras, Hand of Ragnaros" != item.name:
-                            item.quality = item.quality - 1
+                        item.quality = item.quality - 1
                 else:
                     item.quality = 0
             else:
@@ -51,6 +50,9 @@ class GildedRose:
         if item.quality > 50:
             item.quality = 50
 
+
+def improves_with_age(item):
+    return "Aged Brie" == item.name or "Backstage passes to a TAFKAL80ETC concert" == item.name
 
 def increment_quality(item):
     item.quality += 1;
