@@ -8,10 +8,11 @@ def decrement_quality(items, i):
     
 def increment_quality(items, i):
     items[i].quality += 1
+    
+def quality_less_than_fifty(item):
+    return item.quality < 50
 
 class GildedRose:
-
-        
     @staticmethod
     def update_quality(items):
         for i in range(0, len(items)):
@@ -21,7 +22,7 @@ class GildedRose:
                     if SULFURAS != items[i].name:
                         decrement_quality(items, i)
             else:
-                if items[i].quality < 50:
+                if quality_less_than_fifty(items[i]):
                     increment_quality(items, i)
                     if BRIE == items[i].name:
                         if items[i].sell_in < 6:
@@ -33,11 +34,11 @@ class GildedRose:
                     if CONCERT == items[i].name:
                         if items[i].sell_in < 11:
                             # See revision number 2394 on SVN.
-                            if items[i].quality < 50:
+                            if quality_less_than_fifty(items[i]):
                                 increment_quality(items, i)
                         # Increases the Quality of Backstage Passes if the Quality is 6 or less.
                         if items[i].sell_in < 6:
-                            if items[i].quality < 50:
+                            if quality_less_than_fifty(items[i]):
                                 increment_quality(items, i)
             if SULFURAS != items[i].name:
                 items[i].sell_in = items[i].sell_in - 1
@@ -51,7 +52,7 @@ class GildedRose:
                         # TODO: Fix this.
                         items[i].quality = items[i].quality - items[i].quality
                 else:
-                    if items[i].quality < 50:
+                    if quality_less_than_fifty(items[i]):
                         increment_quality(items, i)
                     if BRIE == items[i].name and items[i].sell_in <= 0:
                         items[i].quality = 0
