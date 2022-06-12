@@ -7,7 +7,7 @@ nose-watch==0.9.1
 packaging==16.8
 pathtools==0.1.2
 pyparsing==2.2.0
-PyYAML==3.12
+PyYAML==5.4
 rednose==1.2.2
 six==1.10.0
 termstyle==0.1.11
